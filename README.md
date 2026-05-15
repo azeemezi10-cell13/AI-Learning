@@ -14,4 +14,5 @@ Verified CUDA communication between PyTorch and the RTX 5060
 -Matrix Multiplication Test: **PASS**
 -GPU Identity: **Confirmed (RTX 5060)**
 ## Projects
-1. **Hypotension risk prediction:** My first neural network trained on the RTX 5060
+1. **Hypotension risk prediction:** My first neural network trained on the 
+2. **Medical AI:** Preprocessing and Imputation for Anesthesia
