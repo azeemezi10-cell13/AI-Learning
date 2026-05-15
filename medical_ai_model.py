@@ -27,3 +27,7 @@ with torch.no_grad():
     risk_score=prediction.item()
 print(f"Clinical Analysis for Patient...")
 print(f"Predicted Hypotension Risk Score: {risk_score:.2f}%")
+weights=model.layer1.weight[0].cpu().detach().numpy()
+vitals=['Age', 'HR', 'SpO2', 'Comorbidity_Score']
+for name, weight in zip(vitals, weights):
+    print(f"Feature: {name}, Weight: {weight:.4f}")

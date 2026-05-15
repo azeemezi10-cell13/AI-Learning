@@ -19,7 +19,7 @@ df.loc[df.sample(frac=0.05).index, 'Sp02'] = np.nan
 #3. Clinical Preprocessing(cleaning)
 #Logic: if SpO2 is missing we impute it with the median value
 print("Cleaning Data...")
-df['SpO2']=df['Sp02'].fillna(df['Sp02'].median())
+df['SpO2']=df['Sp02'].fillna(95)
 #4.  Define our target : "Critical Event"
 # Logic: if MAP < 60, mark as high risk(1), else low risk(0)
 df['Hypotension_Risk'] = (df['MAP'] < 60).astype(int)

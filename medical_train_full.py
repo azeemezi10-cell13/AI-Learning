@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 import pandas as pd
 import numpy as np
+from sklearn.model_selection import train_test_split
 #1. Setup Device
 device=torch.device("cuda")
 #2. Create the dataset (The 'Medical Records')
@@ -11,6 +12,7 @@ data_size=1000
 features=np.random.rand(data_size, 4) # Random Age, HR, SpO2, Comorbidity_Score
 #Logic : if 2nd col (HR) is high and 3rd col (SpO2) is low, Risk is 1 (high risk)
 labels=((features[:,1]>0.6) & (features[:,2]<0.4)).astype(float)
+X_train, X_test, Y_train, Y_test = train_test_split(features, labels, test_size=0.2)
 X = torch.tensor(features, dtype=torch.float32).to(device)
 Y= torch.tensor(labels, dtype=torch.float32).view(-1,1).to(device)
 #3. Define the model
@@ -44,3 +46,4 @@ with torch.no_grad():
     risk=model(sick_patient).item() * 100
     print(f"New Analysis-Predicted Hypotension Risk: {risk:.2f}%")
 
+print(f'Final Clinical Loss: {loss.item():.4f}')
